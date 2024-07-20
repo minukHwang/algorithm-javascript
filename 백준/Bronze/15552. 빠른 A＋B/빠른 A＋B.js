@@ -4,8 +4,6 @@ const rl = require('readline').createInterface({
 });
 
 let n;
-let a;
-let b;
 let answer = '';
 let count = 0;
 
@@ -13,7 +11,7 @@ rl.on('line', (line) => {
     if(count === 0) {
         n = Number(line);
     } else {
-        [a, b] = line.split(' ').map(Number);
+        const [a, b] = line.split(' ').map(Number);
         answer += a + b + '\n';
         if(count === n) {
             rl.close();
@@ -22,5 +20,5 @@ rl.on('line', (line) => {
     count++;
 }).on('close', () => {
     console.log(answer);
-    process.exit();
+    process.exit(0);
 })
