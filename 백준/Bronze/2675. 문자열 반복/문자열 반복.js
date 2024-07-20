@@ -23,9 +23,7 @@ rl.on('line', (line) => {
         const cnt = item[0];
 
         for(let letter of item[1]){
-            for(let i = 0; i < cnt; i++){
-                answer += letter;
-            }
+           answer += letter.repeat(cnt);
         }
 
         answer += '\n';
