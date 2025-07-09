@@ -1,21 +1,26 @@
 let fs = require('fs');
-let input = fs.readFileSync('/dev/stdin').toString().split('\n').map(line => line.trim().split(' ').map(Number));
+let input = fs.readFileSync('/dev/stdin').toString().toString().split('\n');
 
-let totalCount = input.shift()[0];
-let times = input.sort((a, b) => {
-    if(a[1] === b[1]){
-        return a[0] - b[0];
-     }
-     return a[1] - b[1]
-});
-let maxCount = 0;
-let currentEndTime = 0;
+let N = input[0];
+let time = [];
 
-for(let i = 0; i < totalCount; i++){
-    if(times[i][0] >= currentEndTime){
-        maxCount++;
-        currentEndTime = times[i][1];
-    }
+for (let i = 0; i < N; i++) {
+  time.push(input[i + 1].split(' ').map(Number));
 }
 
-console.log(maxCount);
+time.sort((a, b) => {
+  if (a[1] !== b[1]) return a[1] - b[1];
+  else return a[0] - b[0]
+});
+
+let count = 0;
+let endTime = -1;
+
+for (let i = 0; i < N; i++) {
+  if (time[i][0] >= endTime) {
+    count++;
+    endTime = time[i][1];
+  }
+}
+
+console.log(count);
